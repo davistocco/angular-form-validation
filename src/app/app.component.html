@@ -1,0 +1,72 @@
+<div class="flex centered full-height">
+  <div class="container">
+    <form #addressForm="ngForm" (ngSubmit)="submitAddress(addressForm)">
+      <div class="flex spacer">
+        <div class="labeled-input">
+          <label for="zipCode">CEP</label>
+          <input type="text" id="zipCode" name="zipCode" class="custom-input" required [(ngModel)]="address.zipCode"
+            [ngClass]="{'input-error': zipCode.invalid && addressForm.submitted}" autocomplete="off" #zipCode="ngModel"
+            (change)="loadAddressByZipCode()">
+          <div class="text-error" *ngIf="zipCode.invalid && addressForm.submitted">
+            <div *ngIf="zipCode.errors.required">CEP obrigatório</div>
+          </div>
+        </div>
+        <div class="labeled-input">
+          <label for="street">Rua</label>
+          <input type="text" name="street" class="custom-input" autocomplete="off" [(ngModel)]="address.street"
+            [ngClass]="{'input-error': street.invalid && addressForm.submitted}" #street="ngModel" required>
+          <div class="text-error" *ngIf="street.invalid && addressForm.submitted">
+            <div *ngIf="street.errors.required">Rua obrigatório</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex spacer">
+        <div class="labeled-input">
+          <label for="number">Número</label>
+          <input type="text" name="number" class="custom-input" autocomplete="off" [(ngModel)]="address.number"
+            [ngClass]="{'input-error': number.invalid && addressForm.submitted}" #number="ngModel" required>
+          <div class="text-error" *ngIf="number.invalid && addressForm.submitted">
+            <div *ngIf="number.errors.required">Número obrigatório</div>
+          </div>
+        </div>
+        <div class="labeled-input">
+          <label for="complement">Complemento</label>
+          <input type="text" name="complement" class="custom-input" autocomplete="off" [(ngModel)]="address.complement">
+        </div>
+        <div class="labeled-input">
+          <label for="district">Bairro</label>
+          <input type="text" name="district" class="custom-input" autocomplete="off" [(ngModel)]="address.district"
+            [ngClass]="{'input-error': district.invalid && addressForm.submitted}" #district="ngModel" required>
+          <div class="text-error" *ngIf="district.invalid && addressForm.submitted">
+            <div *ngIf="district.errors.required">Bairro obrigatório</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex spacer">
+        <div class="labeled-input">
+          <label for="state">Estado</label>
+          <input type="text" name="state" class="custom-input" autocomplete="off" [(ngModel)]="address.state"
+            [ngClass]="{'input-error': state.invalid && addressForm.submitted}" #state="ngModel" required>
+          <div class="text-error" *ngIf="state.invalid && addressForm.submitted">
+            <div *ngIf="state.errors.required">Estado obrigatório</div>
+          </div>
+        </div>
+        <div class="labeled-input">
+          <label for="city">Cidade</label>
+          <input type="text" name="city" class="custom-input" autocomplete="off" [(ngModel)]="address.city"
+            [ngClass]="{'input-error': city.invalid && addressForm.submitted}" #city="ngModel" required>
+          <div class="text-error" *ngIf="city.invalid && addressForm.submitted">
+            <div *ngIf="city.errors.required">Cidade obrigatório</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="align-right spacer">
+        <button type="submit" class="flat-btn bold" (click)="addressForm.onSubmit()">Enviar</button>
+      </div>
+
+    </form>
+  </div>
+</div>
